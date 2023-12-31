@@ -7,7 +7,25 @@ periodLength: number,
   target: number,
   average: number
 }
-const calculateExercises=(daily:number[],target:number):CalculateOutput=>{
+interface MultiplyValues {
+  daily: number[];
+  target: number;
+}
+const parseArguments = (args: string[]): MultiplyValues => {
+  if (args.length < 4) throw new Error('Not enough arguments');
+  const newArgs=args.slice(2)
+  
+  if (!newArgs.find((n:string)=>isNaN(Number(n)))) {
+    return {
+      daily:args.slice(3).map(d=>Number(d)),
+     target:Number(args[2])
+    }
+  } else {
+    throw new Error('Provided values were not numbers!');
+  }
+}
+const calculateExercises=(multiplyValues:MultiplyValues):CalculateOutput=>{
+  const {daily,target}=multiplyValues
   const periodLength=daily.length
   const trainingDays=daily.filter(d=>d>0).length
   let totalLength=0
@@ -36,4 +54,10 @@ periodLength,
   average: averageDaily
   })
 }
-console.log(calculateExercises([3, 0, 2, 4.5, 0, 3, 1],2))
+try{
+// const daily:number[]=process.argv.slice(3).map(d=>Number(d))
+// const target:number=Number(process.argv[2])
+
+console.log(calculateExercises(parseArguments(process.argv)))}catch(error){
+  console.log(error)
+}
