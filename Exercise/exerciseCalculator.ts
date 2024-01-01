@@ -24,7 +24,7 @@ const parseArguments = (args: string[]): MultiplyValues => {
     throw new Error('Provided values were not numbers!');
   }
 }
-const calculateExercises=(multiplyValues:MultiplyValues):CalculateOutput=>{
+export const calculateExercises=(multiplyValues:MultiplyValues):CalculateOutput=>{
   const {daily,target}=multiplyValues
   const periodLength=daily.length
   const trainingDays=daily.filter(d=>d>0).length

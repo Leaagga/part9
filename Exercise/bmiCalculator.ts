@@ -17,7 +17,7 @@ const bmiparseArguments = (args: string[]): MultiplyValuesBMI => {
   }
 }
 
-const calculateBmi=(BMIObject:MultiplyValuesBMI)=>{
+export const calculateBmi=(BMIObject:MultiplyValuesBMI)=>{
   const { height,weight}=BMIObject
   const BMI=weight/(height*height/10000)
 if(BMI<18.5){
