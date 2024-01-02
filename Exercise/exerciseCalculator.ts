@@ -1,3 +1,4 @@
+console.log('test1')
 interface CalculateOutput{
 periodLength: number,
   trainingDays: number,
@@ -11,19 +12,19 @@ interface MultiplyValues {
   daily: number[];
   target: number;
 }
-const parseArguments = (args: string[]): MultiplyValues => {
-  if (args.length < 4) throw new Error('Not enough arguments');
-  const newArgs=args.slice(2);
+// const parseArguments = (args: string[]): MultiplyValues => {
+//   if (args.length < 4) throw new Error('Not enough arguments');
+//   const newArgs=args.slice(2);
   
-  if (!newArgs.find((n:string)=>isNaN(Number(n)))) {
-    return {
-      daily:args.slice(3).map(d=>Number(d)),
-     target:Number(args[2])
-    };
-  } else {
-    throw new Error('Provided values were not numbers!');
-  }
-};
+//   if (!newArgs.find((n:string)=>isNaN(Number(n)))) {
+//     return {
+//       daily:args.slice(3).map(d=>Number(d)),
+//      target:Number(args[2])
+//     };
+//   } else {
+//     throw new Error('Provided values were not numbers!');
+//   }
+// };
 export const calculateExercises=(multiplyValues:MultiplyValues):CalculateOutput=>{
   const {daily,target}=multiplyValues;
   const periodLength=daily.length;
@@ -53,11 +54,16 @@ periodLength,
   target,
   average: averageDaily
   });
-};
-try{
-// const daily:number[]=process.argv.slice(3).map(d=>Number(d))
-// const target:number=Number(process.argv[2])
-
-console.log(calculateExercises(parseArguments(process.argv)));}catch(error){
-  console.log(error);
 }
+
+console.log('test2')
+// export const runexercise=()=>{
+// try{
+// // const daily:number[]=process.argv.slice(3).map(d=>Number(d))
+// // const target:number=Number(process.argv[2])
+// console.log('test3')
+// console.log(calculateExercises(parseArguments(process.argv)));}catch(error){
+//   console.log(error);
+// }}
+
+// runexercise()
