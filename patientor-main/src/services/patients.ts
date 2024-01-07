@@ -16,7 +16,7 @@ const create = async (object: PatientFormValues) => {
     `${apiBaseUrl}/patients`,
     object
   );
-
+    console.group(data)
   return data;
 };
 

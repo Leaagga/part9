@@ -3,7 +3,7 @@ import { useState, SyntheticEvent } from "react";
 import {  TextField, InputLabel, MenuItem, Select, Grid, Button, SelectChangeEvent } from '@mui/material';
 
 import { PatientFormValues, Gender } from "../../types";
-
+import PatientsService from '../../services/patients'
 interface Props {
   onCancel: () => void;
   onSubmit: (values: PatientFormValues) => void;
@@ -35,7 +35,6 @@ const AddPatientForm = ({ onCancel, onSubmit }: Props) => {
       }
     }
   };
-
   const addPatient = (event: SyntheticEvent) => {
     event.preventDefault();
     onSubmit({
