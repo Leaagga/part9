@@ -5,8 +5,8 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-import diagnosesRouter from './src/routes/diagnosesRoutes';
-import patientsRouter from './src/routes/patientsRoutes';
+import diagnosesRouter from './routes/diagnosesRoutes';
+import patientsRouter from './routes/patientsRoutes';
 const PORT = 3000;
 app.use('/api/diagnoses',diagnosesRouter);
 app.use('/api/patients',patientsRouter);

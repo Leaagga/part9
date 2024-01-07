@@ -1,5 +1,5 @@
 import patientData from "../../data/patients";
-import { NewPatient, Patient,PatientWithoutssn} from "../../types";
+import { NewPatient, Patient,PatientWithoutssn} from "../types";
 import { v1 as uuid } from 'uuid';
 
 const patients:Patient[]=patientData;
