@@ -1,9 +1,10 @@
 import { courseProps } from "../App"
+import Part from "./Part"
 const Content=(props:courseProps):JSX.Element=>{
-  const {courseParts}=props
+ const {courseParts}=props
   return(
-    <div>
-      {courseParts.map(c=><p>{c.name} {c.exerciseCount}</p>)}
-      </div>)
+    <div>{courseParts.map(part=><Part part={part}/>)}
+      </div>
+      )
 }
 export default Content
