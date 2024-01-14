@@ -13,7 +13,7 @@ useEffect(()=>{
 },[])
   return (<div>
     <h2>Add new entry</h2>
-    <EntryForm />
+    <EntryForm diaries={diaries} setDiaries={setDiaries}/>
     <h2>Diary entries</h2>
     <div>
     {diaries.map(diary=><DiaryEntry diary={diary}/>)}
