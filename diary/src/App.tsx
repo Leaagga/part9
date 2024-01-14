@@ -10,7 +10,7 @@ useEffect(()=>{
     setDiaries(data)
   })
   
-})
+},[])
   return (<div>
     <h2>Add new entry</h2>
     <EntryForm />

@@ -7,7 +7,8 @@ const EntryForm=()=>{
   const [visibility,setVisibility]=useState('')
   const [weather,setWeather]=useState('')
   const [comment,setComment]=useState('')
-    const diaryCreation = (event: React.SyntheticEvent) => {
+  const [error,setError]=useState('')
+    const diaryCreation =async (event: React.SyntheticEvent) => {
       event.preventDefault()
       const diaryToAdd = {
         date,
@@ -16,12 +17,21 @@ const EntryForm=()=>{
         comment
       }
       try{
-      createDiaries(diaryToAdd)
+      const response=await createDiaries(diaryToAdd)
+      console.log(response)
+      if(response.error){
+        throw(response.error)
+      }
+      setWeather('')
       setComment('')
     setVisibility('')
   setDate('')
 setComment('')}catch(error){
   console.log(error)
+  setError(error.data)
+  setTimeout(()=>{
+    setError('')
+  },5000)
 }
       // setNewDiary({
       //   date,
@@ -33,6 +43,7 @@ setComment('')}catch(error){
     };
 return(
 <div>
+  <div style={{color:'red'}}>{error?error:null}</div>
   <form onSubmit={diaryCreation}>
     <div>
   date
