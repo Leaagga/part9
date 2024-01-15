@@ -4,6 +4,7 @@ export enum Weather {
   Cloudy = 'cloudy',
   Stormy = 'stormy',
   Windy = 'windy',
+  null='null'
 }
 
 export enum Visibility {
@@ -11,6 +12,7 @@ export enum Visibility {
   Good = 'good',
   Ok = 'ok',
   Poor = 'poor',
+  null='null'
 }
 export interface Diary{
     id: number;
