@@ -7,7 +7,10 @@ const router = express.Router();
 router.get('/', (_req, res) => {
 res.send(patientsService.getPatients());
 });
-
+router.get('/:id',(req,res)=>{
+  console.log(req.params);
+  res.send(patientsService.getPatient(req.params.id));
+});
 router.post('/', (req, res) => {try{
   const newPatient=toNewPatientEntry(req.body);
   const response=patientsService.addPatient(newPatient);

@@ -14,7 +14,11 @@ export interface Patient{
   dateOfBirth: string,
   ssn: string,
   gender: string,
-  occupation: string
+  occupation: string,
+  entries:Entry[],
+}
+export interface Entry {
 }
 export type PatientWithoutssn=Omit<Patient,"ssn">;
-export type NewPatient=Omit<Patient,"id">;
+export type NewPatient=Omit<Patient,"id"| 'entries'>;
+export type NonSensitivePatient = Omit<Patient, 'ssn' | 'entries'>;

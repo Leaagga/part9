@@ -7,7 +7,7 @@ app.use(express.json());
 
 import diagnosesRouter from './routes/diagnosesRoutes';
 import patientsRouter from './routes/patientsRoutes';
-const PORT = 3000;
+const PORT = 3001;
 app.use('/api/diagnoses',diagnosesRouter);
 app.use('/api/patients',patientsRouter);
 app.get('/api/ping', (_req, res) => {
