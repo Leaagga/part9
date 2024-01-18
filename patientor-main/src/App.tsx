@@ -5,7 +5,7 @@ import { Button, Divider, Container, Typography } from '@mui/material';
 
 import { apiBaseUrl } from "./constants";
 import { Patient } from "./types";
-
+import PatientInfo from "./components/PatientListPage/PatientInfo";
 import patientService from "./services/patients";
 import PatientListPage from "./components/PatientListPage";
 
@@ -35,6 +35,7 @@ const App = () => {
           <Divider hidden />
           <Routes>
             <Route path="/" element={<PatientListPage patients={patients} setPatients={setPatients} />} />
+            <Route path="/patient/:id" element={<PatientInfo/>}/>
           </Routes>
         </Container>
       </Router>

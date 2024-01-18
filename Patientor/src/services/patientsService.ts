@@ -12,7 +12,7 @@ const getPatients=():NonSensitivePatient[]=>{
 const getPatient=(id:string):Patient|undefined=>{
   const patient=patients.find(p=>p.id=id);
   if(patient){
-    patient?.entries?null:patient.entries=[]
+    patient?.entries?null:patient.entries=[];
   }
 
   return patient;
