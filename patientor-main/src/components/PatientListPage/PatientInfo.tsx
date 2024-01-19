@@ -11,7 +11,7 @@ const PatientInfo=()=>{
   useEffect(()=>{
     PatientsService.getOne(id).then(p=>setPatient(p));
   },[]);
-  if(!patient){return null}
+  if(!patient){return null;}
   const genderIconHandler=(gender:Gender)=>{
   switch(gender){
     case 'female':

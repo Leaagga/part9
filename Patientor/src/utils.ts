@@ -1,4 +1,4 @@
-import { Gender, NewPatient,} from './types';
+import { Gender, NewPatient,Entry} from './types';
 const isString = (text: unknown): text is string => {
   return typeof text === 'string' || text instanceof String;
 };
@@ -8,7 +8,9 @@ const isDate = (date: string): boolean => {
 const isGender = (param: string): param is Gender => {
   return Object.values(Gender).map(v => v.toString()).includes(param);
 };
-
+const isType=(type:string):boolean=>{
+  return type==="HealthCheck"||type==="OccupationalHealthcare"||type==="Hospital";
+};
 
 const parseGender = (gender: unknown): Gender => {
   if (!isString(gender) || !isGender(gender)) {
@@ -43,17 +45,34 @@ const parseOccupation = (occupation: unknown): string => {
 
   return occupation;
 };
+const parseEntry=(entries:unknown):Entry[]=>{
+    if ( !entries||!(entries instanceof Array)) {
+    throw new Error('Incorrect or missing data');
+  }
+  const newEntries:Entry[]=entries.map(e=>{
+    console.log(e)
+    if (typeof e !== 'object'||!e){
+    throw new Error('Incorrect or missing data');
+  }
+  if('type' in e&&'id' in e&&'description' in e&&'date' in e&&'specialist' in e&&(isString(e.type)&&isType(e.type))){
+    return e;
+  }
+    throw new Error('Incorrect data: a field missing');})
+    console.log(newEntries);
+return newEntries;
+};
 const toNewPatientEntry = (object: unknown): NewPatient => {
   if ( !object || typeof object !== 'object' ) {
     throw new Error('Incorrect or missing data');
   }
-  if ('name' in object && 'dateOfBirth' in object && 'ssn' in object && 'gender' in object && 'occupation' in object)  {
+  if ('name' in object && 'dateOfBirth' in object && 'ssn' in object && 'gender' in object && 'occupation' in object&&'entries'in object)  {
     const newEntry: NewPatient = {
       name: parseName(object.name),
       gender: parseGender(object.gender),
       ssn:parseSsn(object.ssn),
       dateOfBirth: parseDateOfBirth(object.dateOfBirth),
-      occupation: parseOccupation(object.occupation)
+      occupation: parseOccupation(object.occupation),
+      entries:parseEntry(object.entries)
     };
   
     return newEntry;
