@@ -7,6 +7,7 @@ import { apiBaseUrl } from "./constants";
 import { Patient } from "./types";
 import PatientInfo from "./components/PatientListPage/PatientInfo";
 import patientService from "./services/patients";
+
 import PatientListPage from "./components/PatientListPage";
 
 const App = () => {
@@ -20,8 +21,10 @@ const App = () => {
       setPatients(patients);
     };
     void fetchPatientList();
-  }, []);
+
   
+  }, []);
+
   return (
     <div className="App">
       <Router>
