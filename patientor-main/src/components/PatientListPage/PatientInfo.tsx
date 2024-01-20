@@ -27,6 +27,19 @@ return(<div>
   <div><h2>{patient.name}{genderIconHandler(patient.gender)}</h2></div>
   <div>ssn: {patient.ssn}</div>
   <div>occupation: {patient.occupation}</div>
+  <div>
+    <h3>entries</h3>
+    <div>
+      {patient.entries.map(e=>
+        <div>
+          <p>{e.date} <i>{e.description}</i></p>
+          <ul>{e.diagnosisCodes?.map(dc=>
+            <li>{dc}</li>
+          )}</ul>
+        </div>
+  )}
+  </div>
+  </div>
   </div>);
 };
 export default PatientInfo;
