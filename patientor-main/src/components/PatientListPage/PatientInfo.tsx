@@ -10,12 +10,17 @@ import { Button } from "@mui/material";
 import OccupationalHealthcareEntryComp from "./OccupationalHealthcareEntry";
 import HospitalEntryComp from "./HospitalEntry";
 import HealthCheckEntry from "./HealthCheckEntry";
+import NewPatientForm from "./NewPatientForm";
 const PatientInfo=()=>{
   const {id}= useParams();
   const [patient,setPatient]=useState<Patient>();
+  const [entries,setEntries]=useState<Entry[]>([]);
     const [diagnoses, setDiagnoses] = useState<Diagnosis[]>([]);
   useEffect(()=>{
-    PatientsService.getOne(id).then(p=>setPatient(p));
+    PatientsService.getOne(id).then(p=>{
+      setPatient(p);
+      setEntries(p.entries);
+    });
               const fetchDiagnosesList = async () => {
       const diagnoses = await diagnsisService.getAll();
       setDiagnoses(diagnoses);
@@ -55,6 +60,7 @@ return(<div>
   <div><h2>{patient.name}{genderIconHandler(patient.gender)}</h2></div>
   <div>ssn: {patient.ssn}</div>
   <div>occupation: {patient.occupation}</div>
+  <NewPatientForm id={patient.id} entries={entries} setEntries={setEntries}/>
   <div>
     <h3>entries</h3>
     <div>
@@ -67,9 +73,7 @@ return(<div>
           )}</ul> */}
         </div>
   )}
-  <div>
-    <Button variant="contained">ADD NEW ENTRY</Button>
-  </div>
+
   </div>
   </div>
   </div>);

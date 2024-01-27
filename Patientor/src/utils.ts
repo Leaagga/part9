@@ -77,11 +77,11 @@ const parseSickLeave=(sickLeave:unknown):SickLeaveObject=>{
   }
   if('startDate' in sickLeave&&'endDate' in sickLeave){
   const newSickLeave={
-startDate:parseDate(sickLeave.startDate),
-endDate:parseDate(sickLeave.endDate)
-};
-if(newSickLeave.endDate>newSickLeave.startDate){
-  return newSickLeave;}
+    startDate:parseDate(sickLeave.startDate),
+    endDate:parseDate(sickLeave.endDate)
+    };
+  if(newSickLeave.endDate>newSickLeave.startDate){
+    return newSickLeave;}
 }
 throw new Error('Incorrect data: a field missing');
 };
@@ -125,10 +125,10 @@ const parseDiagnosisCodes = (object: unknown): Array<Diagnosis['code']> =>  {
 // };
 const parseHealthCheckRating=(hr: unknown): number => {
   const set1 = new Set([0,1, 2, 3]);
-  if (!isNumber(hr) || !(set1.has(hr))) {
+  if (!(set1.has(Number(hr)))||!isNumber(Number(hr))) {
     throw new Error('Incorrect type: ' + hr);
   }
-  return hr;
+  return Number(hr);
 };
 const parseEmployerName=(employerName: unknown): string => {
   if (!isString(employerName)) {
