@@ -5,7 +5,7 @@ import PatientsService from '../../services/patients';
 import TransgenderIcon from '@mui/icons-material/Transgender';
 import FemaleIcon from '@mui/icons-material/Female';
 import MaleIcon from '@mui/icons-material/Male';
-import diagnsisService from "../../services/diagnoses";
+
 import { Button } from "@mui/material";
 import OccupationalHealthcareEntryComp from "./OccupationalHealthcareEntry";
 import HospitalEntryComp from "./HospitalEntry";
@@ -15,17 +15,13 @@ const PatientInfo=()=>{
   const {id}= useParams();
   const [patient,setPatient]=useState<Patient>();
   const [entries,setEntries]=useState<Entry[]>([]);
-    const [diagnoses, setDiagnoses] = useState<Diagnosis[]>([]);
+    
   useEffect(()=>{
     PatientsService.getOne(id).then(p=>{
       setPatient(p);
       setEntries(p.entries);
     });
-              const fetchDiagnosesList = async () => {
-      const diagnoses = await diagnsisService.getAll();
-      setDiagnoses(diagnoses);
-    };
-    void fetchDiagnosesList();
+
   },[]);
   if(!patient){return null;}
   const genderIconHandler=(gender:Gender)=>{
@@ -60,7 +56,7 @@ return(<div>
   <div><h2>{patient.name}{genderIconHandler(patient.gender)}</h2></div>
   <div>ssn: {patient.ssn}</div>
   <div>occupation: {patient.occupation}</div>
-  <NewPatientForm id={patient.id} entries={entries} setEntries={setEntries}/>
+  <NewPatientForm id={patient.id} entries={entries} setEntries={setEntries} />
   <div>
     <h3>entries</h3>
     <div>

@@ -110,7 +110,7 @@ const parseDiagnosisCodes = (object: unknown): Array<Diagnosis['code']> =>  {
   if (!object || typeof object !== 'object' || !('diagnosisCodes' in object)) {
     return [] as Array<Diagnosis['code']>;
   }
-
+  console.log(object.diagnosisCodes);
   return object.diagnosisCodes as Array<Diagnosis['code']>;
 };
 
@@ -154,13 +154,9 @@ export const toNewEntry=(e:unknown):EntryWithoutId=>{
       specialist:parseSpecialist(e.specialist),
       date:parseDate(e.date),
       description:parseDescription(e.description),
-    discharge:parseDischarge(e.discharge)};
-      if('diagnosisCodes' in e){
-        Object.defineProperties(newPatientEntry,{
-          diagnosisCodes:{
-            value:parseDiagnosisCodes(e.diagnosisCodes),
-            writable:true}});
-          }
+    discharge:parseDischarge(e.discharge),
+  diagnosisCodes:parseDiagnosisCodes(e)};
+
           break;
       case 'OccupationalHealthcare':
         if(!('employerName' in e)){
@@ -171,14 +167,9 @@ export const toNewEntry=(e:unknown):EntryWithoutId=>{
       specialist:parseSpecialist(e.specialist),
       date:parseDate(e.date),
       description:parseDescription(e.description),
-    employerName:parseEmployerName(e.employerName)};
-      if('diagnosisCodes' in e){
-        Object.defineProperties(newPatientEntry,{
-          diagnosisCodes:{
-            value:parseDiagnosisCodes(e.diagnosisCodes),
-            writable:true}});
-          }
-        
+    employerName:parseEmployerName(e.employerName),
+  diagnosisCodes:parseDiagnosisCodes(e)};
+
         if(!('sickLeave' in e)){
           break;
         }else{
@@ -197,13 +188,9 @@ export const toNewEntry=(e:unknown):EntryWithoutId=>{
       specialist:parseSpecialist(e.specialist),
       date:parseDate(e.date),
       description:parseDescription(e.description),
-      healthCheckRating:parseHealthCheckRating(e.healthCheckRating)};
-      if('diagnosisCodes' in e){
-        Object.defineProperties(newPatientEntry,{
-          diagnosisCodes:{
-            value:parseDiagnosisCodes(e.diagnosisCodes),
-            writable:true}});
-          }
+      healthCheckRating:parseHealthCheckRating(e.healthCheckRating),
+    diagnosisCodes:parseDiagnosisCodes(e)};
+          
         break;
         default:
           throw new Error('Incorrect or missing data');

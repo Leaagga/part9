@@ -19,6 +19,7 @@ const addEntry=(pid:string,entry:EntryWithoutId):Entry|undefined=>{
   const patient=patients.find(p=>p.id===pid);
   if(!patient){return undefined;}
   const patientEntry:Entry={...entry,id};
+  console.log(patientEntry);
   patient.entries.push(patientEntry);
   return patientEntry;
 };
